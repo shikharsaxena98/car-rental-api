@@ -11,15 +11,17 @@ class CarController {
         });
         if(!this.validateCarModel(carDocument)) {
             res.status(400).json({success:false, message:"Invalid Entry."});
-            return ;
+            return;
         }
         try {
             const afterSave = await carDocument.save();
             console.log(afterSave);
             res.status(200).send({success:true,message:"Successfully saved to DB"});
+            return;
         } catch(err) {
             console.log(err);
             res.status(400).json({success:false,message:err});
+            return;
         }
     }
 
